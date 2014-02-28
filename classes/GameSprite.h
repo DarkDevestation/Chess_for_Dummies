@@ -11,12 +11,12 @@
 
 using namespace cocos2d;
 
-enum{WARRIOR, ROGUE, SWORDMASTER, SAGE};
+enum{ROOK, KNIGHT, BISHOP, KING, QUEEN, PAWN};
 
 class GameSprite : public CCSprite 
 {
 	public:
-		GameSprite(std::string, int, int x, int y, char *);
+		GameSprite(std::string, int type, bool p1, int x, int y, char *);
 		~GameSprite();
 		std::string name;
 		CCPoint location;
@@ -26,6 +26,7 @@ class GameSprite : public CCSprite
 		std::vector<CCPoint> validMoves;
 		std::vector<CCPoint> attackMoves;
 		float spriteRadius;
+		bool player1;
 		std::map<std::string, int> stats;
 		std::map<std::string, CCSprite *> spriteStates;
 

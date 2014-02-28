@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="8" height="8" tilewidth="40" tileheight="40">
+ <tileset firstgid="1" name="board41" tilewidth="40" tileheight="40">
+  <image source="../../../../Ragnarok_Chessboard_Map_by_Cheila/data[chess01]/texture/board41.png" width="160" height="160"/>
+ </tileset>
+ <layer name="board" width="8" height="8">
+  <data encoding="base64" compression="zlib">
+   eJy9zacRADAMwECn97L/tBH2GQc8EJITEY+ACKc6IaOgGt3QMTCNXtg4uEbr3+//A+wAAiE=
+  </data>
+ </layer>
+</map>
