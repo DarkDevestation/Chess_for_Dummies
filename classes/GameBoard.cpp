@@ -290,6 +290,38 @@ void GameBoard::ccTouchesBegan(CCSet* touches, CCEvent* event)
 					showValidMoves(0);
 					return; //touch handled
 				}
+
+				else if(highlight->getTag() == RED_HIGHLIGHT_TAG)  //if highlight is an enemy piece
+				{
+					CCPoint pos;
+					GameSprite *piece1;
+					int row, count;
+					//play sound effect
+					CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("hit.wav");
+					//get position of enemy peice
+					pos = highlight->getPosition() + CCPoint(0, SPRITE_WIDTH/2 + SPRITE_HEIGHT_OFFSET);
+					row = (pos.y - SPRITE_WIDTH/2 - SPRITE_HEIGHT_OFFSET)/TILE_WIDTH; 
+
+					//cycle through pieces in the row checking their position against the highlights position until piece to be removed is found
+					count = RowLayer[row]->getChildren()->count();
+					for(count = count; count > 0; count--)
+					{
+						piece1 = (GameSprite*)RowLayer[row]->getChildren()->objectAtIndex(count-1);
+						if(piece1->getPosition().x == pos.x && piece1->getPosition().y == pos.y)
+							break;
+					}
+					
+					//remove the enemy piece
+					RowLayer[row]->removeChild(piece1);
+					//move the piece, switch players turn, remove move highilights
+					movePiece(SelectedPiece, highlight);
+					SelectedPiece = 0;
+					PlayersTurn = PlayersTurn%2 + 1;
+					if(PlayersTurn == 1) whosTurn->setString("Player 1's Turn");
+					else whosTurn->setString("Player 2's Turn");
+					showValidMoves(0);
+					return; //touch handled
+				}
 			}
 		}
 	}
